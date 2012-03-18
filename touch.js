@@ -1,12 +1,14 @@
 define(['zepto', 'proxy'], function ($, proxy) {
 
-    var thresholds = {
-        xSwipe: 35,
-        ySwipe: 25,
-        singleTap: 250,
-        doubleTap: 350,
-        holdTap: 850
-    },
+    var hasTouch = 'ontouchstart' in window,
+
+        thresholds = {
+            xSwipe: 35,
+            ySwipe: 25,
+            singleTap: 250,
+            doubleTap: 350,
+            holdTap: 850
+        },
 
     touchFn = {
         swipe: function (el, info) {
@@ -53,24 +55,27 @@ define(['zepto', 'proxy'], function ($, proxy) {
                 delete info.touchTime;
             }, thresholds.holdTap);
         }
-    };
+    },
 
-    var globalTouch = {
+    globalTouch = {
         // touchcancel is called whenever the system cancels a touch event
         events: ['touchstart', 'touchmove', 'touchend', 'touchcancel'],
+        mouseEvents: ['mousedown', 'mousemove', 'mouseup', ''],
         actions: ['swipe', 'tap'],
         touchInfo: {},
 
         init: function() {
-            this.events.forEach(proxy(function (eventName) {
-                document.body.addEventListener(eventName,
+            this.events.forEach(proxy(function (eventName, idx) {
+                document.body.addEventListener(
+                    hasTouch ? eventName : this.mouseEvents[idx],
                     proxy(this['on' + eventName], this), false);
             }, this));
         },
 
         ontouchstart: function (e) {
             var now = e.timeStamp,
-                tc = e.touches[0], node = tc.target,
+                tc = hasTouch ? e.touches[0] : e,
+                node = tc.target,
                 deltaTime = now - this.touchInfo.touchTime || now;
 
             this.el = $('tagName' in node ?
@@ -87,7 +92,7 @@ define(['zepto', 'proxy'], function ($, proxy) {
         },
 
         ontouchmove: function (e) {
-            var tc = e.touches[0];
+            var tc = hasTouch ? e.touches[0] : e;
             this.touchInfo.finishX = tc.pageX;
             this.touchInfo.finishY = tc.pageY;
         },
