@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>hide address bar</title>
+        <style>
+            body { font-size: 2em; min-height: 900px; }
+        </style>
+        <script>
+            function hideAddressBar() {
+                if (!window.location.hash) { 
+                    if (document.height <= window.outerHeight + 10) {
+                        document.body.style.height = (window.outerHeight + 50) + 'px';
+                        setTimeout(function() {
+                            window.scrollTo(0, 1);
+                        }, 50);
+                    } else {
+                        setTimeout(function() {
+                            window.scrollTo(0, 1);
+                        }, 0);
+                    }
+                }
+            } 
+
+            window.addEventListener('load', hideAddressBar );
+            window.addEventListener('orientationchange', hideAddressBar )
+        </script>
+    </head>
+    <body>
+        <div>hide address bar</div>
+    </body>
+</html>
