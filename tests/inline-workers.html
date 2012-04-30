@@ -30,10 +30,8 @@
 
             worker.onmessage = function (e) {
                 console.info('Received: ' + e.data);
-                console.timeEnd('time');
             }
             worker.postMessage();
-            console.time('time');
         </script>
     </body>
 </html>
