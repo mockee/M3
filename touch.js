@@ -34,10 +34,12 @@ define(['zepto', 'proxy'], function ($, proxy) {
                 el.trigger('tap', { action: 'doubleTap' });
 
             } else if (info.touchTime) {
-                this.tapTimer = setTimeout(function() {
-                    el.trigger('tap', { action: 'singleTap' });
-                    delete info.touchTime;
-                }, thresholds.singleTap);
+                if (!(info.finishX || info.finishY)){
+                  this.tapTimer = setTimeout(function() {
+                      el.trigger('tap', { action: 'singleTap' });
+                      delete info.touchTime;
+                  }, thresholds.singleTap);
+                }
             }
 
             if (this.holdTimer) {
