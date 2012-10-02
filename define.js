@@ -41,15 +41,15 @@
       current_ns = callee._ns = mod.ns || 'window';
 
     // collect exports of dependent modules
-    deps = ((/^function.*?\(([\w'"\/\-\:,\n\r\s]*)\)/
+    deps = ((/^function.*?\(([\w'"\$\/\-\:,\n\r\s]*)\)/
       .exec(fn.toString()) || [])[1] || '')
-      .replace(/\s/g, '').split(',');
+      .replace(/\s+/g, '').split(',');
 
     deps.length = len;
 
     each(deps, function(name, i) {
       // replace exports with corresponding functions
-      deps[i] = (win[current_ns])[name];
+      deps[i] = (win[current_ns] || win)[name];
     });
 
     // add `require`
@@ -133,6 +133,8 @@
 
     [].push.apply(mods[mid].alias, vars);
   };
+
+  define.amd = { jQuery: true };
 
   win.define = define;
 
