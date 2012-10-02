@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>inline worker test</title>
-    </head>
-    <body>
-        <script id="inline-worker" type="javascript/worker">
-            function fibonacci (n) {
-                return n < 2 && n >= 0 ? n : fibonacci(n - 1) + fibonacci(n - 2);
-            }
+  <head>
+    <meta charset="utf-8" />
+    <title>inline worker test</title>
+  </head>
+  <body>
+    <script id="inline-worker" type="javascript/worker">
+      function fibonacci(n) {
+        return n < 2 && n >= 0
+          ? n : fibonacci(n - 1) + fibonacci(n - 2);
+      }
 
-            function fibonacciTail (n) {
-                return (function (n1, n2, i) {
-                    return i < n ? arguments.callee(n2, n1 + n2, i + 1) : n1;
-                })(1, 1, 1);
-            }
+      function fibonacciTail(n) {
+        return (function(n1, n2, i) {
+          return i < n ? arguments.callee(n2, n1 + n2, i + 1) : n1;
+        })(1, 1, 1);
+      }
 
-            self.onmessage = function (e) {
-                self.postMessage(fibonacci(40));
-                //self.postMessage(fibonacci(900));
-            };
-        </script>
-        <script>
-            var bb = new WebKitBlobBuilder();
-            bb.append(document.querySelector('#inline-worker').textContent);
+      self.onmessage = function(e) {
+        self.postMessage(fibonacci(40));
+        //self.postMessage(fibonacci(900));
+      };
+    </script>
+    <script>
+      var bb = new WebKitBlobBuilder();
+      bb.append(document.querySelector('#inline-worker').textContent);
 
-            var worker = new Worker(
-                window.webkitURL.createObjectURL(bb.getBlob()));
+      var worker = new Worker(
+        window.webkitURL.createObjectURL(bb.getBlob()));
 
-            worker.onmessage = function (e) {
-                console.info('Received: ' + e.data);
-            }
-            worker.postMessage();
-        </script>
-    </body>
+      worker.onmessage = function(e) {
+        console.info('Received: ' + e.data);
+      }
+      worker.postMessage();
+    </script>
+  </body>
 </html>
