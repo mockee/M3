@@ -49,7 +49,7 @@
 
     each(deps, function(name, i) {
       // replace exports with corresponding functions
-      deps[i] = (win[current_ns] || win)[name];
+      deps[i] = win[current_ns][name] || win[name];
     });
 
     // add `require`
