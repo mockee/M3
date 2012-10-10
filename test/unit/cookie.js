@@ -3,8 +3,8 @@ module('cookie');
 test('Set & get cookie without options', function() {
   cookie('test_cookie', 1);
 
-  ok(cookie('test_cookie') === '1', 'Passed!');
   ok(document.cookie.split('; ').indexOf('test_cookie=1') !== -1, 'Passed!');
+  ok(cookie('test_cookie') === '1', 'Passed!');
 });
 
 test('Set cookie with `path`', function() {
