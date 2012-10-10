@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Test M3 modules</title>
+  <link rel="stylesheet" href="qunit/qunit/qunit.css">
+  <script src="../define.js"></script>
+  <script>
+    define.config({
+      'mod/cookie': 'cookie'
+    });
+  </script>
+  <script src="../mod/cookie.js"></script>
+</head>
+<body>
+  <div id="qunit"></div>
+  <script src="qunit/qunit/qunit.js"></script>
+  <script src="unit/cookie.js"></script>
+</body>
+</html>
