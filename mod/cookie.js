@@ -23,19 +23,23 @@ define('mod/cookie', function() {
   function set(name, value, options) {
     options = options || {};
 
-    var date, expires,
+    var date, expires, expiresGMTString,
       pair = name + '=' + encodeURIComponent(value),
       path = options.path ? '; path=' + options.path : '',
       domain = options.domain ? '; domain=' + options.domain : '',
-      maxage = options['max-age'] ? '; max-age=' + options['max-age'] : '',
+      maxage = options['max-age'],
       secure = options.secure ? '; secure' : '';
 
     if (options.expires) {
-      expires = options.expires;
+      expiresGMTString = options.expires;
     } else if (maxage) {
       date = new Date();
       date.setTime(date.getTime() + maxage * 1000);
-      expires = '; expires=' + date.toGMTString();
+      expiresGMTString = date.toGMTString();
+    }
+
+    if (expiresGMTString) {
+      expires = '; expires=' + expiresGMTString;
     }
 
     document.cookie = [pair, expires, path, domain, secure].join('');
