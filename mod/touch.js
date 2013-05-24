@@ -20,7 +20,7 @@ define('mod/touch', [], function() {
   , thresholds = {
       xSwipe: 35
     , ySwipe: 25
-    , singleTap: 50
+    , singleTap: 10
     , doubleTap: 250
     , hold: 650
     }
@@ -32,21 +32,21 @@ define('mod/touch', [], function() {
           , absDeltaX = Math.abs(deltaX)
           , absDeltaY = Math.abs(deltaY)
 
-        if (absDeltaX > thresholds.xSwipe ||
-          absDeltaY > thresholds.ySwipe) {
-          delete info.touchTime
-          trigger(el, 'swipe', {
-            direction: absDeltaX > absDeltaY
-              ? deltaX < 0 ? 'left' : 'right'
-              : deltaY < 0 ? 'up' : 'down'
-          })
+        if (absDeltaX > thresholds.xSwipe
+          || absDeltaY > thresholds.ySwipe) {
+            delete info.touchTime
+            trigger(el, 'swipe', {
+              direction: absDeltaX > absDeltaY
+                ? deltaX < 0 ? 'left' : 'right'
+                : deltaY < 0 ? 'up' : 'down'
+            })
         }
       }
 
     , tap: function(el, info) {
         if (info.deltaTime > 0
           && info.deltaTime <= thresholds.doubleTap) {
-          trigger(el, 'doubleTap')
+            trigger(el, 'doubleTap')
         } else if (info.touchTime) {
           this.tapTimer = setTimeout(function() {
             trigger(el, 'tap')

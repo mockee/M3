@@ -5,12 +5,13 @@
  */
 
 define(function() {
-  var bool, doc = document
+  var doc = document
     , docElem = doc.documentElement
     , refNode = docElem.firstElementChild || docElem.firstChild
     // fakeBody required for <FF4 when executed in <head>
     , fakeBody = doc.createElement('body')
     , div = doc.createElement('div')
+    , bool
 
   div.id = 'mq-test-1'
   div.style.cssText = "position:absolute;top:-100em"

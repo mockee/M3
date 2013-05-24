@@ -31,7 +31,7 @@ define('mod/cookie', function() {
       secure = options.secure ? '; secure' : '';
 
     if (options.expires) {
-      expiresGMTString = options.expires;
+      expiresGMTString = options.expires
     } else if (maxage) {
       date = new Date();
       date.setTime(date.getTime() + maxage * 1000);

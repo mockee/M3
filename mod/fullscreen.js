@@ -1,4 +1,4 @@
-define('mod/fullscreen', function() {
+define('mod/fullscreen', [], function() {
   var doc = document,
 
   fullscreenAPI = {
@@ -53,9 +53,7 @@ define('mod/fullscreen', function() {
 
     fullscreenAPI.fullscreenElement = function() {
       if (vendorPrefix) {
-        return vendorPrefix === 'webkit'
-          ? doc.CurrentFullScreenElement
-          : doc[vendorPrefix + 'FullScreenElement'];
+        return doc[vendorPrefix + 'FullscreenElement'];
       } else {
         return doc.fullscreenElement;
       }
@@ -67,9 +65,9 @@ define('mod/fullscreen', function() {
         : doc.exitFullscreen();
     };
 
-    fullscreenAPI.requestFullscreen = function(el) {
+    fullscreenAPI.requestFullscreen = function (el) {
       return vendorPrefix
-        ? el[vendorPrefix + 'RequestFullScreen']()
+        ? el[vendorPrefix + 'RequestFullscreen'](Element.ALLOW_KEYBOARD_INPUT)
         : el.requestFullscreen();
     };
   }
