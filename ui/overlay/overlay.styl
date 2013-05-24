@@ -1,0 +1,53 @@
+@import "arkui/mixins"
+
+.ark-overlay
+.ark-overlay body
+  width: 100%
+  height: @width
+  overflow: hidden
+
+#ark-overlay
+  top: 0
+  left: @top
+  z-index: 40
+  width: 100%
+  height: @width
+  text-align: center
+  position: absolute
+  background: rgba(0,0,0,0.8)
+  .ua-ie8 &
+    background: #2d2d2b
+  overflow-x: hidden
+  overflow-y: auto
+  white-space: nowrap
+  &.hide
+    pointer-events: none
+    opacity: 0
+    overflow-y: hidden
+
+.k-stick
+.k-content
+  inline-block()
+  vertical-align: middle
+
+.k-stick
+  height: 100%
+  width: 1px
+  margin-right: -0.31em
+  .ua-ie8 &
+    margin-right: -0.43em
+  overflow: hidden
+
+.k-content
+  max-width: 100%
+  margin: 20px auto
+  text-align: left
+  white-space: pre-line
+  background: #fff
+
+.k-anchor
+  width: 100%
+  height: 0
+  font-size: 0
+  line-height: 0
+  overflow: hidden
