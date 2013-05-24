@@ -1,0 +1,128 @@
+@import "arkui/mixins"
+@import "arkui/table"
+
+#ark-console
+  font-family: Lucida Grande, sans-serif
+  position: fixed
+  z-index: 9999
+  bottom: 0
+  color: #333
+  width: 100%
+  background: white
+
+  .table
+    margin: 0
+  .table-bordered
+    border-color: #c2c2c2
+    border-radius: 0
+
+  .stdout
+    pre
+      cursor: default
+      color: #30df41
+      background: black
+      margin-top: 3px
+      margin-left: -9px
+      padding: 10px 0
+      overflow: auto
+      max-height: 100%
+  .stdout-data
+    display: none
+  .data-item
+    cursor: pointer
+
+  .col-name
+    width: 60%
+  .col-method
+    width: 20%
+  .col-time
+    width: 20%
+
+  td, th
+    font-size: 11px
+    line-height: 1.3
+    padding: 3px 8px
+    border-color: #c4c4c4
+    border-radius: 0
+  th
+    vertical-align: middle
+    background: linear-gradient(top, #ececec, #d9d9d9)
+  td
+    border-top: none
+
+  .profile-hd
+  .profile-bd
+    display: none
+
+  .profile-hd
+    user-select: none
+
+  .profile-bd
+    min-height: 17px
+    max-height: 300px
+    overflow-x: hidden
+    overflow-y: overlay
+    margin-bottom: 21px
+    table
+      border-top: none
+      border-bottom: none
+
+  .profile-ft
+    position: fixed
+    bottom: 0
+    width: 100%
+    user-select: none
+    font-size: 11px
+    line-height: 1.5
+    color: #aaa
+    background: #eee
+    text-align: right
+    cursor: pointer
+    padding: 2px
+    border-top: 1px solid #c4c4c4
+    &.mini
+      right: -2px
+      width: auto
+      padding: 2px 0 2px 8px
+      border-left: 1px solid #c4c4c4
+      border-top-left-radius: 4px
+
+  .name
+    font-weight: bold
+  .path
+    color: #999
+  .subtitle
+    color: #999
+
+  .table-striped tbody tr:nth-child(odd) td
+  .table-striped tbody tr:nth-child(odd) th
+    background-color: white
+  .table-striped tbody tr:nth-child(even) td
+  .table-striped tbody tr:nth-child(even) th
+    background-color: #f3f3f3
+
+  .table-striped tbody tr:nth-child(odd) .data-grid
+  .table-striped tbody tr:nth-child(odd) .data-grid
+    background-color: #eee
+  .table-striped tbody tr:nth-child(even) .data-grid
+  .table-striped tbody tr:nth-child(even) .data-grid
+    background-color: #e1e1e1
+
+  .switcher
+    inline-block()
+    width: 8px
+    height: @width
+    margin: 0 @width
+    border-radius: (@width / 2)
+    vertical-align: middle
+    cursor: pointer
+    &.on
+      background: green
+    &.off
+      background: darkgray
+
+  .requests
+    color: #666
+    margin-left: 10px
+    .req-num
+      margin-right: 3px

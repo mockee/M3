@@ -1,0 +1,69 @@
+<div id="ark-console">
+  <div class="profile-hd">
+    <table class="table table-bordered">
+      <colgroup>
+        <col class="col-name">
+        <col class="col-method">
+        <col class="col-time">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>
+            <div class="title">Name</div>
+            <div class="subtitle">Path</div>
+          </th>
+          <th>
+            <div class="method">Method</div>
+          </th>
+          <th>Time</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="profile-bd">
+    <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-name">
+        <col class="col-method">
+        <col class="col-time">
+      </colgroup>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div class="profile-ft mini">
+    <span class="apc">APC</span>
+    <span class="requests">
+      <span class="req-num">0</span>requests
+    </span>
+    <em class="switcher off">
+    </em>
+  </div>
+</div>
+
+<script id="tmpl-console-item" type="text/template">
+  <tr>
+    <td class="data-item">
+      <div class="stdout-data">
+        {{= stdout }}
+      </div>
+      <div class="name">
+        {{= name }}
+      </div>
+      <div class="path">
+        {{= path }}
+      </div>
+      <div class="stdout">
+      </div>
+    </td>
+    <td class="data-grid">
+      <b>{{= method }}</b>
+    </td>
+    <td class="data-grid">
+      {{= time }} ms
+    </td>
+  </tr>
+</script>
+
+<script>
+  Do('widget/profile')
+</script>
