@@ -4,17 +4,12 @@ define('ui/overlay', [
 ], function($, Emitter) {
   var tmpl =
         '<div id="ark-overlay" class="hide">'
-      + '<div class="k-stick"></div>'
-      + '<div class="k-content"></div>'
+      +   '<div class="k-stick"></div>'
+      +   '<div class="k-content"></div>'
       + '</div>'
 
     , doc = $(document)
     , docRoot = $('html')
-
-  function overlay(opts) {
-    opts = opts || {}
-    return new Overlay(opts)
-  }
 
   function Overlay(opts) {
     Emitter.call(this)
@@ -26,7 +21,8 @@ define('ui/overlay', [
       .prependTo('body')
 
     this.body = this.el.find('.k-content')
-    this.closable = opts.closable || true
+    this.closable = opts.closable !== void 0
+      ? !!opts.closable : true
     this.setBody()
 
     if (!this.closable) { return }
@@ -43,31 +39,41 @@ define('ui/overlay', [
     })
   }
 
-  Overlay.prototype.close = function() {
-    docRoot.removeClass('ark-overlay')
-    this.el.remove()
-    this.anchor.remove()
-    doc.scrollTop(this.scrollTop)
-    doc.off('.close')
-    this.emit('close')
-    return this
-  }
+  $.extend(Overlay.prototype, {
+    close: function() {
+      docRoot.removeClass('ark-overlay')
+      this.el.remove()
+      this.anchor.remove()
+      doc.scrollTop(this.scrollTop)
+      doc.off('.close')
+      this.emit('close')
+      return this
+    }
 
-  Overlay.prototype.open = function() {
-    this.scrollTop = doc.scrollTop()
-    this.anchor.css('margin-top', -this.scrollTop)
-    docRoot.addClass('ark-overlay')
-    this.el.removeClass('hide')
-    this.emit('open')
-    return this
-  }
+  , open: function() {
+      this.scrollTop = doc.scrollTop()
+      this.anchor.css('margin-top', -this.scrollTop)
+      docRoot.addClass('ark-overlay')
+      this.el.removeClass('hide')
+      this.emit('open')
+      return this
+    }
 
-  Overlay.prototype.setBody = function() {
-    this.body.html(this.opts.body)
-    return this
-  }
+  , setBody: function(body) {
+      body = body || this.opts.body
+      this.body.html(body)
+      return this
+    }
+  })
 
   Emitter(Overlay.prototype)
 
-  return overlay
+  function exports(opts) {
+    opts = opts || {}
+    return new exports.Overlay(opts)
+  }
+
+  exports.Overlay = Overlay
+
+  return exports
 })
