@@ -5,7 +5,9 @@ define('ui/overlay', [
   var tmpl =
         '<div id="ark-overlay" class="hide">'
       +   '<div class="k-stick"></div>'
-      +   '<div class="k-content"></div>'
+      +   '<div class="k-content">'
+      +     '<div class="k-slave"></div>'
+      +   '</div>'
       + '</div>'
 
     , doc = $(document)
@@ -20,7 +22,7 @@ define('ui/overlay', [
     this.anchor = $('<div>', { id: 'k-anchor' })
       .prependTo('body')
 
-    this.body = this.el.find('.k-content')
+    this.body = this.el.find('.k-slave')
     this.closable = opts.closable !== void 0
       ? !!opts.closable : true
     this.setBody()
