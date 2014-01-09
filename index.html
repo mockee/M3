@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="M3 : JavaScript Modules for Building Web Applications." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>M3</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mockee/M3">View on GitHub</a>
+
+          <h1 id="project_title">M3</h1>
+          <h2 id="project_tagline">JavaScript Modules for Building Web Applications.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/mockee/M3/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/mockee/M3/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>
+<a name="dialog" class="anchor" href="#dialog"><span class="octicon octicon-link"></span></a>Dialog</h2>
+
+<p>A generic alert, confirm and flexible dialog with optional overlay.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">dialog</span><span class="p">({</span>
+  <span class="nx">type</span><span class="o">:</span> <span class="s1">'custom'</span> <span class="c1">// tips | confirm</span>
+<span class="p">,</span> <span class="nx">title</span><span class="o">:</span> <span class="s1">'Displayed at the top of the dialog box.'</span>
+<span class="p">,</span> <span class="nx">content</span><span class="o">:</span> <span class="s1">'Plain text or HTML strings.'</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">setButtons</span><span class="p">(</span><span class="nx">customButtonsHTMLString</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'confirm'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Do something</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">open</span><span class="p">()</span>
+</pre></div>
+
+<h3>
+<a name="instance-methods" class="anchor" href="#instance-methods"><span class="octicon octicon-link"></span></a>Instance Methods</h3>
+
+<h6>
+<a name="dialogprototypesettitle" class="anchor" href="#dialogprototypesettitle"><span class="octicon octicon-link"></span></a>Dialog.prototype.setTitle()</h6>
+
+<p>Overwrites current title of the dialog box.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">dialog</span><span class="p">().</span><span class="nx">setTitle</span><span class="p">(</span><span class="s1">'New title'</span><span class="p">)</span>
+</pre></div>
+
+<h6>
+<a name="dialogprototypesetfoot" class="anchor" href="#dialogprototypesetfoot"><span class="octicon octicon-link"></span></a>Dialog.prototype.setFoot()</h6>
+
+<p>Adds bottom section to the dialog box.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">dialog</span><span class="p">().</span><span class="nx">setFoot</span><span class="p">(</span><span class="s1">'&lt;input type="checkbox"&gt; Agree'</span><span class="p">)</span>
+</pre></div>
+
+<h6>
+<a name="dialogprototypesetbuttons" class="anchor" href="#dialogprototypesetbuttons"><span class="octicon octicon-link"></span></a>Dialog.prototype.setButtons()</h6>
+
+<p>Sets buttons text or style on demand.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">dialog</span><span class="p">({</span>
+  <span class="nx">type</span><span class="o">:</span> <span class="s1">'tips'</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">setButtons</span><span class="p">([{</span>
+  <span class="nx">text</span><span class="o">:</span> <span class="s1">'知道了'</span>
+<span class="p">}])</span>
+</pre></div>
+
+<h6>
+<a name="dialogprototypeaddclass" class="anchor" href="#dialogprototypeaddclass"><span class="octicon octicon-link"></span></a>Dialog.prototype.addClass()</h6>
+
+<p>Adds classname to <code>#ark-dialog</code></p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">dialog</span><span class="p">().</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'author-dialog'</span><span class="p">)</span>
+</pre></div>
+
+<h6>
+<a name="dialogprototypeopen" class="anchor" href="#dialogprototypeopen"><span class="octicon octicon-link"></span></a>Dialog.prototype.open()</h6>
+
+<p>Shows your dialog box.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">dialog</span><span class="p">().</span><span class="nx">open</span><span class="p">()</span>
+</pre></div>
+
+<h6>
+<a name="dialogprototypeclose" class="anchor" href="#dialogprototypeclose"><span class="octicon octicon-link"></span></a>Dialog.prototype.close()</h6>
+
+<p>Removes your dialog box.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">dialog</span><span class="p">().</span><span class="nx">close</span><span class="p">()</span>
+</pre></div>
+
+<h3>
+<a name="events" class="anchor" href="#events"><span class="octicon octicon-link"></span></a>Events</h3>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">M3 maintained by <a href="https://github.com/mockee">mockee</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
